@@ -28,6 +28,5 @@ jobs:
 workflows:
   say-hello-workflow:
     jobs:
-      requires:
         - print-hello
         - print-world
