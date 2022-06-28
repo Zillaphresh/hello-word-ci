@@ -44,5 +44,5 @@ workflows:
     jobs:
       - save-helo-world-output
       - print-output-file:
-        requires:
-          -  save-helo-world-output
+          requires:
+            -  save-helo-world-output
