@@ -5,39 +5,43 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  print-hello:
+  save-helo-world-output:
     docker:
       - image: cimg/base:stable
     steps:
-      - checkout
       - run:
           name: "print Hello"
-          command: "echo Hello"
+          command: echo "Hello, world" > ~/output.txt
+      - persist_to_workspace:
+          root: ~/
+          paths: 
+            - output.txt
+
   print-world:
     docker:
      - image: cimg/base:stable
     steps:
-      - checkout
+      
       - run:
           name: "print world"
           command: "echo world!"
-  print-my-name:
+  print-output-file:
     docker:
       - image: cimg/base:stable
     steps:
-      - checkout
+      - attach_workspace:
+          at: ~/
       - run:
           name: "print my env name"
-          command: echo $MY_NAME
+          command: |
+            cat ~/output.txt
       
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  say-hello-workflow:
+  save-hello-world-output:
     jobs:
-        - print-hello
-        - print-world:
-            requires:
-              - print-hello
-        - print-my-name
+       - print-output-file:
+          requires:
+            -  save-helo-world-output
