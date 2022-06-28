@@ -21,6 +21,14 @@ jobs:
       - run:
           name: "print world"
           command: "echo world!"
+  print-my-name:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout:
+      - run:
+          name: "print my env name"
+          command: "echo $MY_NAME"
       
 
 # Invoke jobs via workflows
@@ -32,3 +40,4 @@ workflows:
         - print-world:
             requires:
               - print-hello
+        - print-my-name
