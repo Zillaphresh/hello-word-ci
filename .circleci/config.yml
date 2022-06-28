@@ -28,7 +28,7 @@ jobs:
       - checkout
       - run:
           name: "print my env name"
-          command: "echo $MY_NAME"
+          command: echo $MY_NAME
       
 
 # Invoke jobs via workflows
