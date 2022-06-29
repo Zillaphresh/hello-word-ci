@@ -11,7 +11,13 @@ commands:
 
 jobs:
   print-workflow-id:
-    - print-pipeline-id
+    docker:
+      image: cimg/base:stable
+    steps:
+      - run:
+          name: "print workflow ID"
+          command: !
+            - print-pipeline-id
   save-helo-world-output:
     docker:
       - image: cimg/base:stable
@@ -28,7 +34,6 @@ jobs:
     docker:
      - image: cimg/base:stable
     steps:
-      
       - run:
           name: "print world"
           command: "echo world!"
