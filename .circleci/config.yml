@@ -16,6 +16,18 @@ jobs:
     steps:
       - print-pipeline-id
 
+  test-failure:
+    docker: 
+      - image: cimg/base:stable
+    steps:
+      - run: exit 1
+      - run:
+          name: on error
+          command: echo "Hello Error"
+          when: on_fail
+         
+      
+
   save-helo-world-output:
     docker:
       - image: cimg/base:stable
@@ -52,6 +64,7 @@ jobs:
 workflows:
   save-hello-world-output:
     jobs:
+      - test-failure
       - print-workflow-id
       - save-helo-world-output
       - print-output-file:
