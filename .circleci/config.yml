@@ -14,9 +14,8 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - run:
-          name: "print workflow ID"
-          command: print-pipeline-id
+      - print-pipeline-id
+
   save-helo-world-output:
     docker:
       - image: cimg/base:stable
