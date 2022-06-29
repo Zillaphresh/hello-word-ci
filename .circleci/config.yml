@@ -12,7 +12,7 @@ commands:
 jobs:
   print-workflow-id:
     docker:
-      image: cimg/base:stable
+      - image: cimg/base:stable
     steps:
       - run:
           name: "print workflow ID"
